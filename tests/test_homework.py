@@ -1,7 +1,6 @@
 """Autograding script."""
 
 import pandas as pd  # type: ignore
-
 from homework import (
     pregunta_01,
     pregunta_02,

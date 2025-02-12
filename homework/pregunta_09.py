@@ -24,16 +24,16 @@ def pregunta_09():
     38  38  E   1  1999-09-28  1999
     39  39  E   5  1998-01-26  1998
     """
-    # Leer el archivo TSV con el separador correcto
-    tbl0 = pd.read_csv('files/input/tbl0.tsv', sep='\t')
 
-    # Intentar convertir la columna `c3` a fechas, ignorando errores
-    tbl0["year"] = pd.to_datetime(tbl0["c3"], errors="coerce").dt.year
+    df = pd.read_csv('files/input/tbl0.tsv', sep='\t')
 
-    # Convertir la columna `year` a enteros (`Int64` para permitir valores nulos)
-    tbl0["year"] = tbl0["year"].astype("Int64")
 
-    return tbl0
+    df["year"] = df["c3"].astype(str).str[:4]
 
-# Ejecutar la función
+    return df
+
+
 print(pregunta_09())
+
+
+
