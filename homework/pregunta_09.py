@@ -6,6 +6,8 @@ librerias de pandas para resolver las preguntas.
 """
 
 
+import pandas as pd
+
 def pregunta_09():
     """
     Agregue el año como una columna al dataframe que contiene el archivo
@@ -21,5 +23,17 @@ def pregunta_09():
     37  37  C   9  1997-07-22  1997
     38  38  E   1  1999-09-28  1999
     39  39  E   5  1998-01-26  1998
-
     """
+    # Leer el archivo TSV con el separador correcto
+    tbl0 = pd.read_csv('files/input/tbl0.tsv', sep='\t')
+
+    # Intentar convertir la columna `c3` a fechas, ignorando errores
+    tbl0["year"] = pd.to_datetime(tbl0["c3"], errors="coerce").dt.year
+
+    # Convertir la columna `year` a enteros (`Int64` para permitir valores nulos)
+    tbl0["year"] = tbl0["year"].astype("Int64")
+
+    return tbl0
+
+# Ejecutar la función
+print(pregunta_09())
